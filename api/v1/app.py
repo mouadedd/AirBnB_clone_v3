@@ -16,11 +16,13 @@ port = getenv("HBNB_API_PORT", "5000")
 
 @app.teardown_appcontext
 def teardown(exception):
+    """handle storage close """
     storage.close()
 
 
 @app.errorhandler(404)
 def not_found(error):
+    """handle not found"""
     return jsonify({"error": "Not found"}), 404
 
 
