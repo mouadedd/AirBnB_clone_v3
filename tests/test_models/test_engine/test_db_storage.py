@@ -111,7 +111,7 @@ class TestDBStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != "db", "Not testing db storage")
     def test_get(self):
-        """Test that get returns one object"""
+        """Test that return one object"""
         state = State(name="Ebonyi")
         state.save()
         state_from_get = storage.get(State, state.id)
@@ -119,11 +119,11 @@ class TestDBStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != "db", "Not testing db storage")
     def test_get_not_existing_id(self):
-        """Test that get resturns one object"""
+        """Test that return one object"""
         self.assertEqual(None, storage.get(State, "SomeBlaH"))
 
     @unittest.skipIf(models.storage_t != "db", "Not testing db storage")
     def test_count(self):
-        """Test that count of object or specific class"""
+        """Test count of objects"""
         self.assertIsInstance(storage.count(), int)
         self.assertIsInstance(storage.count(State), int)
