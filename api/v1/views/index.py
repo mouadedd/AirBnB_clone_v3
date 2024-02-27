@@ -11,22 +11,23 @@ from models.state import State
 from models.user import User
 
 
-classes = {"amenities": Amenity, "cities": City, "places": Place,
-           "reviews": Review, "states": State, "users": User}
+@app_views.route('/status')
+def get_status():
+    '''Gets api status '''
+    return jsonify(status='OK')
 
 
-@app_views.route("/status")
-def status():
-    """Status of my API"""
-    return jsonify({"status": "OK"})
-
-
-@app_views.route("/stats")
-def stats():
-    """fetch the number of each objects by type"""
-    objects = {}
-
+@app_views.route('/stats')
+def get_stats():
+    '''get how many objects in each type'''
+    classes = {
+        'amenities': Amenity,
+        'cities': City,
+        'places': Place,
+        'reviews': Review,
+        'states': State,
+        'users': User
+    }
     for key, value in classes.items():
-        objects[key] = storage.count(value)
-
-    return jsonify(objects)
+        classes[key] = storage.count(value)
+    return jsonify(clases)
